@@ -1,16 +1,16 @@
-const inputElement = document.querySelector('#validation-input');
+const inputElement = document.getElementById('validation-input');
 
-inputElement.addEventListener('blur', (e) => {
-  const value = e.currentTarget.value;
-  const maxLength = parseInt(inputElement.getAttribute('data-length'));
-  console.log(maxLength);
-  
-  if (value.length === maxLength) {
-    inputElement.classList.add('valid');
+inputElement.addEventListener('blur', validateInput);
+
+function validateInput() {
+  const inputValue = inputElement.value;
+  const requiredLength = parseInt(inputElement.getAttribute('data-length'));
+
+  if (inputValue.length === requiredLength) {
     inputElement.classList.remove('invalid');
+    inputElement.classList.add('valid');
   } else {
-    inputElement.classList.add('invalid');
     inputElement.classList.remove('valid');
+    inputElement.classList.add('invalid');
   }
-  
-});
+}
